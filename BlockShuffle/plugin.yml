@@ -1,0 +1,15 @@
+name: BlockShuffle
+version: 0.0.1
+author: Namu
+main: fr.namu.bs.MainBS
+commands:
+  host:
+    description: Commandes des administrateurs
+    usage: /host <command>
+  h:
+    description: Commandes des administrateurs
+    usage: /h <command>
+  block:
+    description: Permet de voir votre bloc objectif.
+  rules:
+    description: Permet de voir les regles du jeu.
