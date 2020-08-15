@@ -1,1 +1,3 @@
 # BlockShuffle
+- Règles
+À venir
