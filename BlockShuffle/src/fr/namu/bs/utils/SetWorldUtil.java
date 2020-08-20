@@ -18,7 +18,6 @@ public class SetWorldUtil {
 
 	public void setWorld() {
 	    try {
-	    	  this.main.basic.setup();
 		      World world = this.main.basic.world;
 		      world.setPVP(false);
 		      world.setWeatherDuration(0);

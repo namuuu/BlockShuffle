@@ -72,7 +72,6 @@ public class BlockUtil {
 		    		player.playSound(player.getLocation(), Sound.LEVEL_UP, 1.5F, 1.0F);
 		    		pbs.addPoints(pbs.getPoints() + 15 + Math.round(300 / this.main.timer.timeUsed()));
 		    		pbs.setFinished(true);
-		    		this.main.top.refreshPoints(player);
 		    		player.setPlayerListName("§7[" + pbs.getBlockName() + " | " + pbs.getPoints() + "§7] §a" + player.getName());
 		    		if(pbs.getPoints() >= 200) {
 		    			this.main.end.win(player);

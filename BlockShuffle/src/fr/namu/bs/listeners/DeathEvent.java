@@ -38,6 +38,6 @@ public class DeathEvent implements Listener {
 		player.setFoodLevel(20);
 		player.teleport(pbs.getSpawn());
 		player.playSound(player.getLocation(), Sound.AMBIENCE_THUNDER, 1.0F, 1.0F);
-		player.sendMessage("§cVous êtes mort ! Par conséquent, vous revenez à votre point de départ.... Mais sans équipement !");		
+		player.sendMessage("§cVous êtes mort ! Par conséquent, vous revenez à votre point de départ....");		
 	}
 }

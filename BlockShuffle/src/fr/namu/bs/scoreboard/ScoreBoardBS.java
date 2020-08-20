@@ -23,20 +23,20 @@ public class ScoreBoardBS {
 	            "Durée : §9" + this.main.timer.textTimer(),
 	            "",
 	            "§eClassement :",
-	            "§1#1 - §f",
-	            "§3#2 - §f",
-	            "§b#3 - §f",
+	            "§1#1 - §f" + this.main.top.getPlayerTop(1),
+	            "§3#2 - §f" + this.main.top.getPlayerTop(2),
+	            "§b#3 - §f" + this.main.top.getPlayerTop(3),
 	            "",
 	            "",
 	            "",
 	            ""
 	    };
-		if(this.main.top.getFirst() != null)
+		/*if(this.main.top.getFirst() != null)
 			score[5] = score[5] + this.main.top.getFirst().getName();
 		if(this.main.top.getSecond() != null)
 			score[6] = score[6] + this.main.top.getSecond().getName();
 		if(this.main.top.getThird() != null)
-			score[7] = score[7] + this.main.top.getThird().getName();
+			score[7] = score[7] + this.main.top.getThird().getName();*/
 		
 		if(this.main.playerbs.containsKey(board.getPlayer().getUniqueId()) && this.main.playerbs.get(board.getPlayer().getUniqueId()).isState(State.VIVANT)) {
 			PlayerBS pbs = this.main.playerbs.get(board.getPlayer().getUniqueId());

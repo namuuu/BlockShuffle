@@ -7,6 +7,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.namu.bs.MainBS;
 import fr.namu.bs.PlayerBS;
+import fr.namu.bs.enumbs.State;
 import fr.namu.bs.enumbs.StateBS;
 
 public class ChatEvent implements Listener {
@@ -24,15 +25,18 @@ public class ChatEvent implements Listener {
 		if (this.main.isState(StateBS.LOBBY)) {
 			event.setFormat("§e" + player.getName() + " §7» §7" + event.getMessage());
 			return;
-		} else if (this.main.playerbs.containsKey(player.getUniqueId())) {
-			PlayerBS pbs = this.main.playerbs.get(player.getUniqueId());
+		} 
+		
+		PlayerBS pbs = this.main.playerbs.get(player.getUniqueId());
+			
+		if(pbs.isState(State.VIVANT)) {
 			if(pbs.isFinished()) {
 				event.setFormat("§7[" + pbs.getBlockName() + " | " + pbs.getPoints() + "§7] §a" + player.getName() + " §7» " + event.getMessage());
-			} else {
-				event.setFormat("§7[" + pbs.getBlockName() + " | " + pbs.getPoints() + "§7] §c" + player.getName() + " §7» " + event.getMessage());
+				return;
 			}
-		} else {
-			event.setFormat("§7[SPEC] " + player.getName() + " » " + event.getMessage());
+			event.setFormat("§7[" + pbs.getBlockName() + " | " + pbs.getPoints() + "§7] §c" + player.getName() + " §7» " + event.getMessage());
+			return;
 		}
+		event.setFormat("§7[SPEC] " + player.getName() + " » " + event.getMessage());		
 	}
 }

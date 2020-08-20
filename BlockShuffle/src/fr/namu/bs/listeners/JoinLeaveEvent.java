@@ -30,7 +30,6 @@ public class JoinLeaveEvent implements Listener {
 		Player player = event.getPlayer();
 		this.main.playerbs.put(player.getUniqueId(), new PlayerBS()); 
 		PlayerBS pbs = this.main.playerbs.get(player.getUniqueId());
-		
 		player.setMaxHealth(20.0D);
 		player.setHealth(20.0D);
 		player.setExp(0.0F);
@@ -46,6 +45,11 @@ public class JoinLeaveEvent implements Listener {
 		player.sendMessage("§ePlus les manches avanceront, plus les blocs à obtenir seront §adifficiles à trouver §e!");
 		player.sendMessage("§eLe premier joueur à atteindre §a250 points §egagne !");
 		player.sendMessage("§7══════════════════════════════");
+		FastBoard fastboard = new FastBoard(player);
+	    fastboard.updateTitle("§9Block §eShuffle");
+	    this.main.boards.put(player.getUniqueId(), fastboard);
+	    this.main.score.updateBoard();
+	    Title.sendTabTitle(player, "§9Block §eShuffle", " ", "§eCe Plugin a été développé par §9Namu §7(@Namu.#5363)", "", "§9Nore site: §ehttps://nontia.fr/", " ");
 		for (PotionEffect po : player.getActivePotionEffects())
 			player.removePotionEffect(po.getType()); 
 		player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 2147483647, 0, false, false));	
@@ -55,21 +59,13 @@ public class JoinLeaveEvent implements Listener {
 			player.setGameMode(GameMode.ADVENTURE);
 			this.main.stat.addPlayer();	
 			event.setJoinMessage("§a+ §7» §e"+ event.getPlayer().getName());
-			
-		} else {
-			if(this.main.playerbs.containsKey(player.getUniqueId())) {
-				this.main.playerbs.get(player.getUniqueId()).setState(State.SPEC);
-			}			
-			player.setGameMode(GameMode.SPECTATOR);						
-			event.setJoinMessage("§7+ » "+ event.getPlayer().getName());
-		}
-		
-		FastBoard fastboard = new FastBoard(player);
-	    fastboard.updateTitle("§9Block §eShuffle");
-	    this.main.boards.put(player.getUniqueId(), fastboard);
-	    this.main.score.updateBoard();
-	    Title.sendTabTitle(player, "§9Block §eShuffle", " ", "§eCe Plugin a été développé par §9Namu §7(@Namu.#5363)", "", "§9Nore site: §ehttps://nontia.fr/", " ");
-	    
+			this.main.score.updateBoard();
+			return;			
+		} 
+		this.main.playerbs.get(player.getUniqueId()).setState(State.SPEC);	
+		player.setGameMode(GameMode.SPECTATOR);						
+		event.setJoinMessage("§7+ » "+ event.getPlayer().getName());
+    
 	}
 	
 	@EventHandler
@@ -77,22 +73,11 @@ public class JoinLeaveEvent implements Listener {
 		Player player = event.getPlayer();
 		
 		event.setQuitMessage("§c- §7» §e"+ event.getPlayer().getName());
-		
-		if(this.main.isState(StateBS.LOBBY)) {		
-			this.main.score.updateBoard();
-			if(this.main.playerbs.containsKey(player.getUniqueId())) {
-				this.main.stat.decPlayer();
-				this.main.boards.remove(player.getUniqueId());
-				this.main.playerbs.remove(player.getUniqueId());
-			}
-		} else {
-			if(this.main.playerbs.containsKey(player.getUniqueId())) {
-				this.main.stat.decPlayer();
-				this.main.playerbs.get(player.getUniqueId()).setState(State.SPEC);
-				this.main.boards.remove(player.getUniqueId());
-				this.main.playerbs.remove(player.getUniqueId());
-				this.main.top.refreshPlayer();
-			}
+
+		if(this.main.playerbs.containsKey(player.getUniqueId())) {
+			this.main.stat.decPlayer();
+			this.main.boards.remove(player.getUniqueId());
+			this.main.playerbs.remove(player.getUniqueId());
 		}
 	}
 	
