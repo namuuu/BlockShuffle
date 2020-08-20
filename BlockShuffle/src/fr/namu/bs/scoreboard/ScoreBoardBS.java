@@ -15,7 +15,7 @@ public class ScoreBoardBS {
 		this.main = main;
 	}
 
-	public void updateBoardGame(FastBoard board) {
+	public void BoardGame(FastBoard board) {
 		
 		String[] score = { 
 	            "",
@@ -31,15 +31,9 @@ public class ScoreBoardBS {
 	            "",
 	            ""
 	    };
-		/*if(this.main.top.getFirst() != null)
-			score[5] = score[5] + this.main.top.getFirst().getName();
-		if(this.main.top.getSecond() != null)
-			score[6] = score[6] + this.main.top.getSecond().getName();
-		if(this.main.top.getThird() != null)
-			score[7] = score[7] + this.main.top.getThird().getName();*/
+		PlayerBS pbs = this.main.playerbs.get(board.getPlayer().getUniqueId());
 		
-		if(this.main.playerbs.containsKey(board.getPlayer().getUniqueId()) && this.main.playerbs.get(board.getPlayer().getUniqueId()).isState(State.VIVANT)) {
-			PlayerBS pbs = this.main.playerbs.get(board.getPlayer().getUniqueId());
+		if(pbs.isState(State.VIVANT)) {		
 			score[9] = "Vos points : §9" + pbs.getPoints();
 			score[10] = "Bloc : §3" + score[10] + pbs.getBlockName();
 		} else {
@@ -58,7 +52,7 @@ public class ScoreBoardBS {
 		board.updateLines(score);
 	}
 
-	public void updateBoardLobby(FastBoard board) {
+	public void BoardLobby(FastBoard board) {
 		String[] score = { 
 	            "",
 	            "§eUn doute sur les règles ?",
@@ -87,10 +81,22 @@ public class ScoreBoardBS {
 	public void updateBoard() {
 		for (FastBoard board : this.main.boards.values()) {	
 			if(this.main.isState(StateBS.LOBBY)) {
-				updateBoardLobby(board);
+				BoardLobby(board);
 			} else {
-				updateBoardGame(board);
+				BoardGame(board);
 			}
+		}
+	}
+	
+	public void updateBoardLobby() {
+		for (FastBoard board : this.main.boards.values()) {
+			BoardLobby(board);
+		}
+	}
+	
+	public void updateBoardGame() {
+		for (FastBoard board : this.main.boards.values()) {
+			BoardGame(board);
 		}
 	}
 }

@@ -11,14 +11,12 @@ import fr.namu.bs.enumbs.StateBS;
 
 public class PlayersUtil {
 
-	private MainBS main;
+	private MainBS main;	
 	
-	
-	
-	
-	
-	
-	
+	public PlayersUtil(MainBS main) {
+		
+	}
+
 	public void setWaitPlayer(Player player) {
 		if(!this.main.isState(StateBS.LOBBY)) {
 			return;

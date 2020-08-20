@@ -34,6 +34,7 @@ public class MainBS extends JavaPlugin {
 	public final TimerUtil timer = new TimerUtil(this);
 	public final TopUtil top = new TopUtil(this);
 	public final EndUtil end = new EndUtil(this);
+	public final PlayersUtil player = new PlayersUtil(this);
 	
 	@Override
 	public void onEnable() {

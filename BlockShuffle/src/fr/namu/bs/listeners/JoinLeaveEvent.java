@@ -59,7 +59,7 @@ public class JoinLeaveEvent implements Listener {
 			player.setGameMode(GameMode.ADVENTURE);
 			this.main.stat.addPlayer();	
 			event.setJoinMessage("§a+ §7» §e"+ event.getPlayer().getName());
-			this.main.score.updateBoard();
+			this.main.score.updateBoardLobby();
 			return;			
 		} 
 		this.main.playerbs.get(player.getUniqueId()).setState(State.SPEC);	
@@ -71,6 +71,7 @@ public class JoinLeaveEvent implements Listener {
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {	
 		Player player = event.getPlayer();
+		this.main.score.updateBoard();
 		
 		event.setQuitMessage("§c- §7» §e"+ event.getPlayer().getName());
 

@@ -21,7 +21,7 @@ public class GameRun extends BukkitRunnable {
 
 	public void run() {
 		this.main.timer.decTimer();
-		this.main.score.updateBoard();	
+		this.main.score.updateBoardGame();
 		
 		if(this.main.timer.getTimer() == 235) {
 			if(this.main.timer.getRound() == 1) {

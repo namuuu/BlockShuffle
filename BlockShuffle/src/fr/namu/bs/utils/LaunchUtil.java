@@ -41,7 +41,7 @@ public class LaunchUtil {
 		}
 		
 		this.main.setState(StateBS.TP);
-	    this.main.score.updateBoard();
+	    this.main.score.updateBoardGame();
 	    
 	    World world = this.main.basic.world;
 	    WorldBorder wb = world.getWorldBorder();
