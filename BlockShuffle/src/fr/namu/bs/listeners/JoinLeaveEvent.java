@@ -26,7 +26,6 @@ public class JoinLeaveEvent implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		
 		Player player = event.getPlayer();
 		this.main.playerbs.put(player.getUniqueId(), new PlayerBS()); 
 		PlayerBS pbs = this.main.playerbs.get(player.getUniqueId());

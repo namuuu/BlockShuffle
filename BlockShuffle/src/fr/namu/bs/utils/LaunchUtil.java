@@ -91,13 +91,15 @@ public class LaunchUtil {
 			Location spawnp = new Location(world, x, (world.getHighestBlockYAt(x, z) + 1), z);
 			((PlayerBS)this.main.playerbs.get(player.getUniqueId())).setSpawn(spawnp.clone());
 			spawnp.setY(spawnp.getY() + 100.0D); 
-			player.setFoodLevel(20);
-			player.setSaturation(20.0F);
-			player.setRemainingAir(300);
 			player.setGameMode(GameMode.SURVIVAL);
 			player.teleport(spawnp);
+			/*PaperLib.teleportAsync(player, spawnp).thenAccept(result -> {
+				if (result) {
+					Bukkit.broadcastMessage("§7Téléportation du joueur : " + player.getName() + "§7...");
+				}
+			});*/
 			setPlatform(player);
-		} 
+	} 
 	
 	public void setPlatform(Player player) {
 		World world = this.main.basic.world;
